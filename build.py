@@ -19,7 +19,7 @@ if os.path.exists(outputDir):
 os.makedirs(f"{outputDir}/posts", exist_ok=True)
 
 shutil.copytree(assetsDir, f"{outputDir}/assets", dirs_exist_ok=True)
-shutil.copy("../src/templates/home.html", f"{outputDir}/index.html")
+shutil.copy("src/templates/home.html", f"{outputDir}/index.html")
 
 for fileName in os.listdir(inputDir):
     with open(f"{inputDir}/{fileName}", "r") as f:
