@@ -3,11 +3,11 @@ import json
 import shutil
 import markdown
 
-inputDir = "../src/posts"
-outputDir = "../dist"
-assetsDir = "../src/assets"
-postTemplateDir = "../src/templates/post.html"
-jsonPostDataDir = "../dist/posts.json"
+inputDir = "src/posts"
+outputDir = "dist"
+assetsDir = "src/assets"
+postTemplateDir = "src/templates/post.html"
+jsonPostDataDir = "dist/posts.json"
 
 with open(postTemplateDir) as f:
     postTemplate = f.read()
