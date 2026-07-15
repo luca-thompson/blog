@@ -28,9 +28,7 @@ for fileName in os.listdir(inputDir):
     url = f"/posts/{slug}"
     posts.append({"title": title.strip(), "slug": slug, "url": url})
 
-for post in posts:
-
-for i in range(len(posts))
+for i in range(len(posts)):
     with open(f"{inputDir}/{post[i]['slug']}.md") as f:
         lines = f.read().splitlines()
     body = "\n".join(lines[1:])
