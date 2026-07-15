@@ -40,6 +40,9 @@ for i in range(len(posts)):
     output = output.replace("{{leftHref}}", posts[(i-1) % len(posts)]["url"])
     output = output.replace("{{rightHref}}", posts[(i+1) % len(posts)]["url"])
 
+    output = output.replace("{{leftText}}", posts[(i-1) % len(posts)]["title"])
+    output = output.replace("{{rightHref}}", posts[(i+1) % len(posts)]["title"])
+
     with open(f"{outputDir}/posts/{posts[i]['slug']}.html", 'w') as f:
         f.write(output)
 
