@@ -55,6 +55,3 @@ for i in range(len(posts)):
 
     with open(f"{outputDir}/posts/{posts[i]['slug']}.html", 'w') as f:
         f.write(output)
-
-with open(jsonPostDataDir, "w") as f:
-    f.write(json.dumps(posts, indent=4, sort_keys=True))
