@@ -33,7 +33,7 @@ for fileName in os.listdir(inputDir):
 #make postlinks out of posts
 postLinks = []
 for post in posts:
-    postLinks.append( f'"<a href="{post.url}">{post.title}</a>"')
+    postLinks.append( f'"<a href="{post["url"]}">{post["title"]}</a>"')
 
 with open(f"{outputDir}/index.html", "w") as f:
     homeTemplate.replace(f"{{postLinks}}", " ".join(postLinks))
