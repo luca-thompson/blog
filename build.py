@@ -7,8 +7,10 @@ inputDir = "src/posts"
 outputDir = "dist"
 assetsDir = "src/assets"
 postTemplateDir = "src/templates/post.html"
-jsonPostDataDir = "dist/posts.json"
+homeTemplateDir = "src/templates/home.html"
 
+with open(homeTemplateDir) as f:
+    homeTemplate = f.read()
 with open(postTemplateDir) as f:
     postTemplate = f.read()
 
@@ -19,7 +21,6 @@ if os.path.exists(outputDir):
 os.makedirs(f"{outputDir}/posts", exist_ok=True)
 
 shutil.copytree(assetsDir, f"{outputDir}/assets", dirs_exist_ok=True)
-shutil.copy("src/templates/home.html", f"{outputDir}/index.html")
 
 for fileName in os.listdir(inputDir):
     with open(f"{inputDir}/{fileName}", "r") as f:
@@ -27,6 +28,15 @@ for fileName in os.listdir(inputDir):
     slug = fileName.removesuffix(".md")
     url = f"/posts/{slug}"
     posts.append({"title": title.strip(), "slug": slug, "url": url})
+
+
+#make postlinks out of posts
+postLinks = []
+for post in posts:
+    postLinks.append( f'"<a href="{post["url"]}">{post["title"]}</a>"')
+
+with open(f"{outputDir}/index.html", "w") as f:
+    homeTemplate.replace(f"{{postLinks}}", " ".join(postLinks))
 
 for i in range(len(posts)):
     with open(f"{inputDir}/{posts[i]['slug']}.md") as f:
@@ -45,6 +55,3 @@ for i in range(len(posts)):
 
     with open(f"{outputDir}/posts/{posts[i]['slug']}.html", 'w') as f:
         f.write(output)
-
-with open(jsonPostDataDir, "w") as f:
-    f.write(json.dumps(posts, indent=4, sort_keys=True))
